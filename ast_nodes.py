@@ -1,61 +1,132 @@
+from dataclasses import dataclass
+from typing import Any, List, Optional, Tuple
+
+
+@dataclass
 class NumberNode:
-    def __init__(self, value):
-        self.value = value
+    value: float | int
+    line: int | None = None
+    column: int | None = None
 
-class VarNode:
-    def __init__(self, name):
-        self.name = name
 
-class BinOpNode:
-    def __init__(self, left, op, right):
-        self.left = left
-        self.op = op
-        self.right = right
+@dataclass
+class StringNode:
+    value: str
+    line: int | None = None
+    column: int | None = None
 
-class VarDeclNode:
-    def __init__(self, name, value):
-        self.name = name
-        self.value = value
 
-class AssignNode:
-    def __init__(self, name, value):
-        self.name = name
-        self.value = value
+@dataclass
+class BooleanNode:
+    value: bool
+    line: int | None = None
+    column: int | None = None
 
-class OutputNode:
-    def __init__(self, expr):
-        self.expr = expr
 
+@dataclass
+class NullNode:
+    value: None = None
+    line: int | None = None
+    column: int | None = None
+
+
+@dataclass
 class ListNode:
-    def __init__(self, elements):
-        self.elements = elements
+    elements: List[Any]
+    line: int | None = None
+    column: int | None = None
 
-class CallNode:
-    def __init__(self, name, args):
-        self.name = name
-        self.args = args
 
-class WhileNode:
-    def __init__(self, condition, block):
-        self.condition = condition
-        self.block = block
+@dataclass
+class DictNode:
+    pairs: List[Tuple[Any, Any]]
+    line: int | None = None
+    column: int | None = None
 
-class IndexNode:
-    def __init__(self, list_node, index):
-        self.list_node = list_node
-        self.index = index
 
+@dataclass
+class VarAccessNode:
+    name: str
+    line: int | None = None
+    column: int | None = None
+
+
+@dataclass
+class VarAssignNode:
+    name: str
+    value: Any
+    line: int | None = None
+    column: int | None = None
+
+
+@dataclass
+class IndexAccessNode:
+    target: Any
+    index: Any
+    line: int | None = None
+    column: int | None = None
+
+
+@dataclass
+class PropertyAccessNode:
+    target: Any
+    property_name: str
+    line: int | None = None
+    column: int | None = None
+
+
+@dataclass
+class BinaryOpNode:
+    left: Any
+    op: Any
+    right: Any
+    line: int | None = None
+    column: int | None = None
+
+
+@dataclass
 class UnaryOpNode:
-    def __init__(self, op, expr):
-        self.op = op
-        self.expr = expr
+    op: Any
+    expr: Any
+    line: int | None = None
+    column: int | None = None
 
+
+@dataclass
+class FunctionCallNode:
+    callee: Any
+    args: List[Any]
+    line: int | None = None
+    column: int | None = None
+
+
+@dataclass
+class ExpressionStatementNode:
+    expr: Any
+    line: int | None = None
+    column: int | None = None
+
+
+@dataclass
 class IfNode:
-    def __init__(self, condition, then_block, else_block):
-        self.condition = condition
-        self.then_block = then_block
-        self.else_block = else_block
+    condition: Any
+    then_block: Any
+    else_block: Optional[Any] = None
+    line: int | None = None
+    column: int | None = None
 
+
+@dataclass
+class ForNode:
+    var_name: str
+    iterable: Any
+    body: Any
+    line: int | None = None
+    column: int | None = None
+
+
+@dataclass
 class BlockNode:
-    def __init__(self, statements):
-        self.statements = statements
+    statements: List[Any]
+    line: int | None = None
+    column: int | None = None
